@@ -1,19 +1,25 @@
 refreshList();
+console.log('Number of Users: '+Object.keys(JSON.parse(localStorage.getItem('users'))).length);
+console.log('Currently selected User: '+localStorage.getItem('selectedUser'));
 
 if (localStorage.getItem('users') === null){
   localStorage.setItem('users', '[]');
-  console.log("OMW");
+  console.log("Created localStorage 'users' item.");
 }
 
 function refreshList(){
   // $('#user-table-body').append('<tr><td>test</td></tr>')
   let userParsed = JSON.parse(localStorage.getItem('users'))
   let userCount = Object.keys(userParsed).length;
-  console.log(userCount);
   $('#user-table-body').empty();
   for (var i = 0; i < userCount; i++) {
-    $('#user-table-body').append('<tr><td>'+userParsed[i].name+'</td><td><button type="button" class="btn btn-link">Open</button></td><td><button type="button" onclick="deleteUser('+i+')" class="btn btn-link">Delete</button></td></tr>')
+    $('#user-table-body').append('<tr><td>'+userParsed[i].name+'</td><td><button onclick=selectUser('+i+') type="button" class="btn btn-link">Select</button></td><td><button type="button" onclick="deleteUser('+i+')" class="btn btn-link">Delete</button></td></tr>')
   }
+}
+
+function selectUser(userID){
+  localStorage.setItem('selectedUser', userID);
+  console.log(localStorage.getItem('selectedUser'));
 }
 
 function deleteUser(userID){
