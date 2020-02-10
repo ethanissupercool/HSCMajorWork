@@ -37,7 +37,9 @@ function newUser(){
   console.log(localStore)
   var currentUsers = JSON.parse(localStorage.getItem('users'));
   console.log(currentUsers);
-  currentUsers.push({name: $(".desiredName").val(), monthlyIncome: $(".monthlyIncome").val(), desiredMonthlySpending: $(".desiredMonthlySpending").val()});
+  currentUsers.push({name: $(".desiredName").val(),
+  monthlyIncome: $(".monthlyIncome").val(),
+  });
   var userJSON = JSON.stringify(currentUsers);
   localStorage.setItem('users', userJSON);
   console.log(JSON.parse(localStorage.getItem('users')));
